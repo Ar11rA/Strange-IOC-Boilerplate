@@ -14,11 +14,7 @@ namespace Game {
 		public DoManagementSignal doManagement {get; set;}
 
 		public override void OnRegister() {
-			view.buttonClicked.AddListener(onClickButton);
-		}
-
-		private void onClickButton(string data) {
-			doManagement.Dispatch(data);
+			view.buttonClicked.AddListener(data => doManagement.Dispatch(data));
 		}
 
 	}

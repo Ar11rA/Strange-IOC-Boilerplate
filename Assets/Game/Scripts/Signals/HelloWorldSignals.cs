@@ -8,4 +8,5 @@ namespace Game {
 
 	public class DoManagementSignal : Signal<string> {} // A new signal!
 
+	public class ShowTextSignal : Signal<string> {} 
 }

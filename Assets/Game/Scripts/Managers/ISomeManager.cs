@@ -5,6 +5,6 @@
          * Perform some management
          */
 		void DoManagement(string data);
-
+		string getInput ();
 	}
 }

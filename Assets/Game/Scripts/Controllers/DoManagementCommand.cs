@@ -14,9 +14,14 @@ namespace Game {
 		[Inject]
 		public string data { get; set; }
 
+		[Inject]
+		public ShowTextSignal showTextSignal { get; set; }
+
 
 		public override void Execute() {
 			manager.DoManagement(data);
+			string input = manager.getInput ();
+			showTextSignal.Dispatch (input);
 		}
 
 	}
