@@ -12,6 +12,9 @@ namespace Game {
 		public ISomeManager manager {get; set;}
 
 		[Inject]
+		public IWebService service{get;set;}
+
+		[Inject]
 		public string data { get; set; }
 
 		[Inject]
@@ -19,10 +22,18 @@ namespace Game {
 
 
 		public override void Execute() {
+			Retain ();
 			manager.DoManagement(data);
 			string input = manager.getInput ();
 			showTextSignal.Dispatch (input);
+			service.webServiceSignal.AddListener (OnWebRequestComplete);
+			service.Request ("https://www.google.com");
 		}
 
+		public void OnWebRequestComplete(string url) {
+			service.webServiceSignal.RemoveListener (OnWebRequestComplete);
+			Debug.Log ("Web Request Complete");
+			Release ();
+		}
 	}
 }

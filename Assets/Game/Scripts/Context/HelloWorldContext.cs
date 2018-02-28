@@ -26,7 +26,10 @@ namespace Game {
 			ManagerAsMonoBehaviour manager = GameObject.Find("Manager").GetComponent<ManagerAsMonoBehaviour>();
 			injectionBinder.Bind<ISomeManager>().ToValue(manager);
 
+			injectionBinder.Bind<IWebService> ().To<WebService> ().ToSingleton ();
+
 			injectionBinder.Bind<ShowTextSignal>().ToSingleton();
+			injectionBinder.Bind<WebServiceRequestSignal> ().ToSingleton ();
 		}
 	}
 }
