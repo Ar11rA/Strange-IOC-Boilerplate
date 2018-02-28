@@ -19,6 +19,9 @@ namespace Game {
 			commandBinder.Bind<StartSignal>().To<HelloWorldStartCommand>().Once();
 			commandBinder.Bind<DoManagementSignal>().To<DoManagementCommand>().Pooled(); // THIS IS THE NEW MAPPING!!!
 
+			injectionBinder.Bind<ShowTextSignal>().ToSingleton();
+			injectionBinder.Bind<WebServiceRequestSignal> ().ToSingleton ();
+
 			mediationBinder.Bind<HelloWorldView>().To<HelloWorldMediator>();
 			mediationBinder.Bind<StatusView>().To<StatusMediator>();
 
@@ -27,9 +30,6 @@ namespace Game {
 			injectionBinder.Bind<ISomeManager>().ToValue(manager);
 
 			injectionBinder.Bind<IWebService> ().To<WebService> ().ToSingleton ();
-
-			injectionBinder.Bind<ShowTextSignal>().ToSingleton();
-			injectionBinder.Bind<WebServiceRequestSignal> ().ToSingleton ();
 		}
 	}
 }
